@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sản phẩm</title>
+    <!-- Remix Icon  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="../css/Total.css">
+</head>
+<body onload="checkAuth(); loadshop()">
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand me-auto" href="./home.html">Tên website...</a>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Tên website</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+          <li class="nav-item"><a class="nav-link mx-lg-2 active" aria-current="page" href="../page/shop.html" data-language="Product" >Sản phẩm</a></li>
+          <li class="nav-item"><a class="nav-link mx-lg-2" href="../page/cart.html" data-language="cart">Giỏ hàng</a></li>
+          <li class="nav-item"><a class="nav-link mx-lg-2" href="../page/favorites.html" data-language="favorites">Yêu thích</a></li>
+          <li class="nav-item">
+            <button class="btn btn-light btn-sm ms-2" id="themeBtn" onclick="toggleDarkMode()"><i class="ri-moon-fill"></i></button>
+          </li>
+          <li class="nav-item">
+            <select class="form-select form-select-sm ms-2" id="langSelect" onchange="changeLanguage(this.value)" style="width: 120px;">
+              <option value="vi">Tiếng Việt</option>
+              <option value="en">English</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <a class="btn btn-danger " onclick="logoutUser()" data-language="logout">Đăng xuất</a>
+    <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+<!-- End navbar -->
+ <!-- Danh sách sản phẩm hiển thị -->
+<div class="container mt-5">
+    <div class="row mb-4">
+        <div class="col-md-8"><h2>Danh sách sản phẩm</h2></div>
+        <div class="col-md-4">
+            <button class="btn btn-success w-100" data-bs-toggle="modal" data-bs-target="#addTourModal">Thêm Sản Phẩm</button>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <input id="search" onkeyup="applyFilters()" class="form-control form-control-lg" placeholder="Tìm kiếm tour, điểm đến...">
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <label class="form-label">Lọc theo loại:</label>
+            <select id="destinationFilter" onchange="applyFilters()" class="form-select">
+                <option value="">Tất cả loại....</option>
+            </select>
+        </div>
+        <div class="col-md-4">
+            <label data-i18n="price" class="form-label">Giá tối đa:</label>
+            <input type="number" id="priceFilter" onchange="applyFilters()" class="form-control" placeholder="Nhập giá tối đa" min="0">
+        </div>
+    </div>
+
+    <div class="row mt-4" id="shopList"></div>
+</div>
+
+<!-- Modal thêm/sửa sản phẩm -->
+<div class="modal fade" id="addShopModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Thêm sản phẩm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="shopId">
+
+                <div class="mb-3">
+                    <label>Hình ảnh (URL):</label>
+                    <input id="shopImg" class="form-control" placeholder="Nhập đường dẫn hình ảnh">
+                </div>
+
+                <div class="mb-3">
+                    <label>Tên sản phẩm:</label>
+                    <input id="shopTitle" class="form-control" placeholder="Tên sản phẩm" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Loại sản phẩm:</label>
+                    <input id="shopLoai" class="form-control" placeholder="Loại sản phẩm" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Giá tiền:</label>
+                    <input id="shopGia" class="form-control" type="number" min="0" placeholder="Nhập giá" required>
+                </div>
+
+                <div class="mb-3">
+                    <label>Mô tả:</label>
+                    <textarea id="shopMota" class="form-control" placeholder="Mô tả sản phẩm" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button class="btn btn-primary" onclick="saveShop()">Lưu</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="../js/DarkMode.js"></script>
+<script src="../js/language.js"></script>
+<script src="/Structure-project/lib/bootstrap/js/bootstrap.js"></script>
+<script src="../js/Api.js"></script>
+<script src="../js/shop.js"></script>
+</body>
+</html>

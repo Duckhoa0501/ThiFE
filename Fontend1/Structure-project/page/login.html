@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang đăng nhập</title>
+    <!-- Favorite Icon -->
+     <link rel="shortcut icon" href="public/images/icons/icon-512x512.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/login.css">
+    <!-- Remix Icon  --> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css">
+</head>
+<body >
+    <!-- Nền sau của trang login -->
+    <img src="/img/Screenshot 2025-12-11 212559.png" class="img-background d-block h-auto max-vw-100" alt="Background image">
+    <div class="container d-flex justify-content-center align-items-center min-vh-100 ">
+        <div class="box shadow-lg">
+            <div class="inner-box top-50 start-50 translate-middle ">
+                <div class="form-wrap">
+                    <!-- form của trang đăng nhập login -->
+                    <form action="#" class="sign-in-form">
+                        <div class="logo d-flex align-items-center">
+                            <img src="" alt="Logo web">
+                            <h4>Tên web</h4>
+                        </div>
+                        <div class="heading">
+                            <h2>Welcome To My website</h2>
+                            <h6>Bạn chưa đăng ký?</h6>
+                            <a href="#" class="toggle">Sign up</a>
+                        </div>
+                        <div class="total-form">
+                            <div class="input-wrap">
+                                <input id="loginEmail" type="text" minlength="4" autocomplete="off" required class="input-field">
+                                <label>Email</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input id="loginPassword" type="password" minlength="4" autocomplete="off" required class="input-field">
+                                <label>Mật khẩu</label>
+                            </div>
+                            
+                            <div class="input-wrap">
+                                <button type="submit" class="Sign-btn" onclick="loginUser()"> Sign In </button>
+                                <p class="text">
+                                    <a href="#">Bạn quên mật khẩu</a>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- form của trang đăng ký sign up -->
+                    <form action="" class="sign-up-form">
+                        <div class="logo d-flex align-items-center">
+                            <img src="" alt="Logo web">
+                            <h4>Tên web</h4>
+                        </div>
+                        <div class="heading">
+                            <h2>Get Started</h2>
+                            <h6>Đã có tài khoản?</h6>
+                            <a href="#" class="toggle">Sign in</a>
+                        </div>
+
+                        <div class="total-form">
+                            <div class="input-wrap">
+                                <input id="reg-name" type="text" minlength="4" autocomplete="off" required class="input-field">
+                                <label class="" id="name-error" >Name</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input id="reg-email" type="email" autocomplete="off" required class="input-field">
+                                <label class="" id="email-error" >Email</label>
+                            </div>
+                            <div class="input-wrap">
+                                <input id="reg-password" type="password" minlength="4" autocomplete="off" required class="input-field">
+                                <label class="" id="password-error" >Mật khẩu</label>
+                            </div>
+                            <div class="input-wrap">
+                                <button type="button" class="Sign-btn" onclick="DangKyTaiKhoan()"> Sign Up </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Mục chuyển đổi tấm ảnh -->
+                <div class="change-img">
+                    <div class="img-wrapper">
+                        <img src="" class="image img-1 show" alt="">
+                        <img src="" class="image img-2 " alt="">
+                        <img src="" class="image img-3" alt="">
+                    </div>
+
+                    <div class="slider">
+                        <div class="bullets">
+                            <span class="active" data-value="1"></span>
+                            <span data-value="2"></span>
+                            <span data-value="3"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- javaScript files -->
+     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/login.js"></script>
+    <script src="../js/Api.js"></script>
+    <script src="/animation/login/login-animation.js"></script>
+</body>
+</html>
